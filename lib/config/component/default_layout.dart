@@ -1,3 +1,5 @@
+import 'package:damoim/config/style/color.dart';
+import 'package:damoim/config/style/font.dart';
 import 'package:flutter/material.dart';
 
 class DefaultLayout extends StatelessWidget {
@@ -33,7 +35,8 @@ class DefaultLayout extends StatelessWidget {
           title!,
           style: TextStyle(
             fontSize: 20,
-            fontWeight: FontWeight.w500,
+            fontFamily: DMFont.nanum_round_eb,
+            color: GRAY_01
           ),
         ),
       );

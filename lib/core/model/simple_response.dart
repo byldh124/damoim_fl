@@ -13,4 +13,8 @@ class SimpleResponse {
   factory SimpleResponse.fromJson(Map<String, dynamic> json) =>
   _$SimpleResponseFromJson(json);
 
+  @override
+  String toString() {
+    return 'SimpleResponse{code: $code, message: $message}';
+  }
 }

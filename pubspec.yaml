@@ -115,3 +115,9 @@ flutter:
     - family: NanumSquareExtraRegular
       fonts:
         - asset: fonts/nanum_square_round_r.otf
+    - family: Cafe24Surround
+      fonts:
+        - asset: fonts/cafe24_surround.otf
+    - family: Jalnan
+      fonts:
+        - asset: fonts/jalnan.otf

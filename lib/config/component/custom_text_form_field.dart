@@ -28,7 +28,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     // UnderlineInputBorder - 기본 적용
     final baseBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(8),
         borderSide: BorderSide(
       color: GRAY_06,
       width: 1.0,
@@ -46,7 +46,7 @@ class CustomTextFormField extends StatelessWidget {
         inputFormatters: digitText ? [FilteringTextInputFormatter.digitsOnly] : null,
         onChanged: onChanged,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 25),
+          contentPadding: EdgeInsets.symmetric(horizontal: 15),
           hintText: hintText,
           hintStyle: TextStyle(
             color: GRAY_06,

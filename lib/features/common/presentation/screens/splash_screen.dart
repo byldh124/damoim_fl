@@ -1,8 +1,13 @@
 import 'package:damoim/config/style/color.dart';
 import 'package:damoim/config/style/font.dart';
 import 'package:damoim/core/route/routes.dart';
-import 'package:damoim/features/common/model/request/version_params.dart';
-import 'package:damoim/features/common/repository/common_repository.dart';
+import 'package:damoim/features/common/data/datasource/remote/app_remote_datasource_impl.dart';
+import 'package:damoim/features/common/data/model/request/version_params.dart';
+import 'package:damoim/features/common/data/repository/app_repository_impl.dart';
+import 'package:damoim/features/common/domain/repository/app_repository.dart';
+import 'package:damoim/features/common/provider/splash_provider.dart';
+import 'package:damoim/features/common/provider/state/spalsh_ui_state.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,21 +21,33 @@ class SplashScreen extends ConsumerStatefulWidget {
 }
 
 class _SplashScreenState extends ConsumerState<SplashScreen> {
-  void _checkAppVersion() async {
-    final repository = ref.watch(commonRepositoryProvider);
-    final response = await repository.checkAppVersion(VersionParams(
-        versionCode: 23, versionName: '1.2.12', packageName: 'com.moondroid.wordcomplete'));
+  @override
+  void initState() {
+    super.initState();
+    ref.listenManual(splashProvider, (pre, next) async {
+      switch(next) {
+        case SplashUiState.loading:
+        case SplashUiState.home:
+          _toHome();
+        case SplashUiState.sign:
+          _checkUserId();
+        case SplashUiState.update:
+          _showAlert();
+      }
+    });
+    ref.read(splashProvider.notifier).checkAppVersion('com.moondroid.wordcomplete', 23, '1.2.12');
+  }
 
-    debugPrint('Response : $response');
-    if (response.code == 1000) {
-      _checkUserId();
-    } else {
-      _showAlert();
-    }
+  void _checkAppVersion() async {
+
   }
 
   void _checkUserId() {
     context.go('/login');
+  }
+
+  void _toHome() {
+    context.go('/home');
   }
 
   void _showAlert() {
@@ -54,7 +71,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _checkAppVersion();
+    debugPrint('build');
     return Scaffold(
       body: Center(
         child: Column(

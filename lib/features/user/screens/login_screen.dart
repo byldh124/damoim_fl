@@ -4,6 +4,7 @@ import 'package:damoim/config/style/color.dart';
 import 'package:damoim/config/style/font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -13,12 +14,15 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
+  String id = "";
+  String pw = "";
+
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
       title: '로그인하기',
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -31,7 +35,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               width: MediaQuery.of(context).size.width * 0.8,
               height: MediaQuery.of(context).size.width * 0.8,
             ),
-            SizedBox(height: 30,),
+            SizedBox(
+              height: 30,
+            ),
             Text(
               '모임대장의 회원이신가요?',
               style: TextStyle(fontFamily: DMFont.nanum_round_r, fontSize: 16),
@@ -52,21 +58,44 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               obscureText: true,
             ),
             SizedBox(
-              height: 20,
+              height: 15,
             ),
             ElevatedButton(
               onPressed: () {},
               child: Text(
                 '로그인',
-                style: TextStyle(color: Colors.white, fontFamily: DMFont.nanum_round_eb, fontSize: 18),
+                style: TextStyle(
+                    color: Colors.white, fontFamily: DMFont.cafe24_surround, fontSize: 18),
               ),
               style: ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(RED_02),
                 overlayColor: WidgetStateProperty.all(RED_03),
               ),
             ),
-
-            Text("아직 회원이 아니시라면 '여기' 를 클릭해주세요.")
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: GestureDetector(
+                onTap: () {
+                  context.go('/login/signup');
+                },
+                child: RichText(
+                    text: TextSpan(
+                        style: TextStyle(
+                            fontSize: 16, fontFamily: DMFont.nanum_round_b, color: GRAY_01),
+                        children: [
+                      TextSpan(text: '아직 회원이 아니시라면 '),
+                      TextSpan(text: "'여기'", style: TextStyle(color: RED_01)),
+                      TextSpan(text: '를 클릭해주세요.'),
+                    ])),
+              ),
+            ),
+            Expanded(child: SizedBox()),
+            Text(
+              '이 어플은 실제 서비스 되는 앱이 아닌 개인용 프로젝트 입니다.',
+              style: TextStyle(color: GRAY_01),
+            )
           ],
         ),
       ),
