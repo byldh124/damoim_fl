@@ -3,6 +3,11 @@
 *.log
 *.pyc
 *.swp
+
+#flutter code generation
+*.g.dart
+*.freezed.dart
+
 .DS_Store
 .atom/
 .buildlog/
