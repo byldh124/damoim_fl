@@ -9,7 +9,7 @@ class SaltRequestParams {
   SaltRequestParams(this.id);
 
   factory SaltRequestParams.fromJson(Map<String, dynamic> json) =>
-  _$SaltRequestParamsFromJson(json);
+      _$SaltRequestParamsFromJson(json);
 
   Map<String, dynamic> toJson() => _$SaltRequestParamsToJson(this);
 }

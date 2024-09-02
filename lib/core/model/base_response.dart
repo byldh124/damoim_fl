@@ -14,15 +14,23 @@ class BaseResponse<T> {
   BaseResponse({
     required this.code,
     required this.message,
-    this.result,
+    required this.result,
   });
 
-  factory BaseResponse.fromJson(
-      Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
+  factory BaseResponse.fromJson(Map<String, dynamic> json, T Function(Object? json) fromJsonT) =>
       _$BaseResponseFromJson(json, fromJsonT);
 
   bool success() {
     return code == 1000;
+  }
+
+  BaseResponse<D> copyWith<D>(D? Function(T?) convertor) {
+    if (result != null) {
+      final domainModel = convertor(result as T);
+      return BaseResponse(code: code, message: message, result: domainModel);
+    } else {
+      return BaseResponse(code: code, message: message, result: null);
+    }
   }
 
   @override

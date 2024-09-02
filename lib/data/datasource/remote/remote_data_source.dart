@@ -1,0 +1,17 @@
+import 'package:damoim/core/dio/dio.dart';
+import 'package:damoim/core/model/base_response.dart';
+import 'package:damoim/core/model/simple_response.dart';
+import 'package:damoim/data/datasource/remote/remote_data_source_impl.dart';
+import 'package:damoim/data/model/dto/user_profile_dto.dart';
+import 'package:damoim/data/model/request/version_params.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final remoteDatasourceProvider = Provider<RemoteDataSource>((ref) {
+  final dio = ref.watch(dioProvider);
+  return RemoteDataSourceImpl(dio: dio);
+});
+
+abstract class RemoteDataSource {
+  Future<SimpleResponse> checkAppVersion(VersionParams params);
+  Future<BaseResponse<UserProfileDto>> sign(String id, String pw);
+}

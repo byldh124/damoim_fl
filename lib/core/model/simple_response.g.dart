@@ -10,10 +10,12 @@ SimpleResponse _$SimpleResponseFromJson(Map<String, dynamic> json) =>
     SimpleResponse(
       code: (json['code'] as num).toInt(),
       message: json['message'] as String,
+      result: json['result'] as String?,
     );
 
 Map<String, dynamic> _$SimpleResponseToJson(SimpleResponse instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
+      'result': instance.result,
     };

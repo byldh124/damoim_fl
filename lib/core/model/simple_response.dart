@@ -7,8 +7,9 @@ part 'simple_response.g.dart';
 class SimpleResponse {
   final int code;
   final String message;
+  final String? result;
 
-  SimpleResponse({required this.code, required this.message});
+  SimpleResponse({required this.code, required this.message, this.result});
 
   factory SimpleResponse.fromJson(Map<String, dynamic> json) =>
   _$SimpleResponseFromJson(json);
