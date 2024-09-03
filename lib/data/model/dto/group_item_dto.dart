@@ -1,3 +1,4 @@
+import 'package:damoim/domain/model/group_item_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'group_item_dto.g.dart';
@@ -14,8 +15,22 @@ class GroupItemDto {
   final String information;
   final String masterId;
 
-  GroupItemDto(this.no, this.title, this.location, this.purpose, this.interest, this.thumb, this.image, this.information, this.masterId);
+  GroupItemDto(this.no, this.title, this.location, this.purpose, this.interest, this.thumb,
+      this.image, this.information, this.masterId);
 
-  factory GroupItemDto.fromJson(Map<String, dynamic> json) =>
-  _$GroupItemDtoFromJson(json);
+  factory GroupItemDto.fromJson(Map<String, dynamic> json) => _$GroupItemDtoFromJson(json);
+
+  GroupItemModel toDomainModel() {
+    return GroupItemModel(
+      int.parse(no),
+      title,
+      location,
+      purpose,
+      interest,
+      thumb,
+      image,
+      information,
+      masterId,
+    );
+  }
 }

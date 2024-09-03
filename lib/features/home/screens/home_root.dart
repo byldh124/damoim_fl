@@ -39,7 +39,7 @@ class _HomeRootState extends State<HomeRoot> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      title: 'Da Order',
+      title: '모임대장',
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: RED_01,
         unselectedItemColor: GRAY_04,

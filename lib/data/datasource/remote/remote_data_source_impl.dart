@@ -26,7 +26,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
   @override
   Future<BaseResponse<UserProfileDto>> sign(String id, String pw) async {
-    final saltResult = await dio.post('/sign/salt.php', data: SaltRequestParams(id).toJson());
+    final saltResult = await dio.post('/sign/salt.php', data: {'id' : id});
     final saltResponse = SimpleResponse.fromJson(saltResult.data!);
 
     final salt = saltResponse.result ?? "";
@@ -53,11 +53,11 @@ class RemoteDataSourceImpl extends RemoteDataSource {
       case GroupType.ALL:
         response = await dio.get('/group/group.php');
       case GroupType.FAVORITE:
-        response = await dio.get('/group/favorite.php');
+        response = await dio.get('/group/favorite.php', queryParameters: {'id': id});
       case GroupType.RECENT:
-        response = await dio.get('/group/recent.php');
+        response = await dio.get('/group/recent.php', queryParameters: {'id': id});
       case GroupType.MYGROUP:
-        response = await dio.get('/group/myGroup.php');
+        response = await dio.get('/group/myGroup.php', queryParameters: {'id': id});
     }
 
     return BaseResponse.fromJson(
@@ -68,7 +68,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
           final map = e as Map<String, dynamic>;
           return GroupItemDto.fromJson(map);
         }).toList();
-        return List.empty();
+        return groupList;
       },
     );
   }
