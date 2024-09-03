@@ -72,7 +72,7 @@ class _HomeRootState extends State<HomeRoot> with SingleTickerProviderStateMixin
       child: TabBarView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _controller,
-        children: [
+        children: const [
           HomeListScreen(),
           HomeMyGroupScreen(),
           HomeSearchScreen(),

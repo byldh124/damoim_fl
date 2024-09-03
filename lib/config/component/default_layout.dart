@@ -33,7 +33,7 @@ class DefaultLayout extends StatelessWidget {
         elevation: 0,
         title: Text(
           title!,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 20,
             fontFamily: DMFont.nanum_round_eb,
             color: GRAY_01

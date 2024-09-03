@@ -11,12 +11,12 @@ mixin AlertUtil {
           content: Text(message ?? "알림"),
           actions: [
             CupertinoDialogAction(
-              child: Text('확인'),
               isDefaultAction: true,
               onPressed: () {
                 //callback?.call();
                 Navigator.pop(context);
               },
+              child: const Text('확인'),
             )
           ],
         );

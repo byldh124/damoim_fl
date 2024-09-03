@@ -32,7 +32,7 @@ class _HomeListScreenState extends ConsumerState<HomeListScreen> {
               return GroupCard(model: item);
             },
           ),
-        Loading() => Center(
+        Loading() => const Center(
             child: CircularProgressIndicator(),
           ),
         Error() => Center(

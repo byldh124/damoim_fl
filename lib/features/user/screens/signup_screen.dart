@@ -18,23 +18,23 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
       title: '회원가입',
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text('아이디를 입력해주세요.'),
-              SizedBox(
+              const Text('아이디를 입력해주세요.'),
+              const SizedBox(
                 height: 5,
               ),
               CustomTextFormField(
                 onChanged: (s) {},
                 hintText: '아이디를 입력해주세요.',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Text('비밀번호를 입력해주세요.'),
-              SizedBox(
+              const Text('비밀번호를 입력해주세요.'),
+              const SizedBox(
                 height: 5,
               ),
               CustomTextFormField(
@@ -42,11 +42,11 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 obscureText: true,
                 hintText: '비밀번호를 입력해주세요.',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Text('비밀번호를 한번 더 입력해주세요.'),
-              SizedBox(
+              const Text('비밀번호를 한번 더 입력해주세요.'),
+              const SizedBox(
                 height: 5,
               ),
               CustomTextFormField(
@@ -54,32 +54,32 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 obscureText: true,
                 hintText: '비밀번호를 한번 더 입력해주세요.',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Text('이름을 입력해주세요.'),
-              SizedBox(
+              const Text('이름을 입력해주세요.'),
+              const SizedBox(
                 height: 5,
               ),
               CustomTextFormField(
                 onChanged: (s) {},
                 hintText: '이름을 입력해주세요.',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Text('생년월일.'),
-              SizedBox(
+              const Text('생년월일.'),
+              const SizedBox(
                 height: 5,
               ),
               Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: GRAY_04)),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                   child: Text(''),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
             ],

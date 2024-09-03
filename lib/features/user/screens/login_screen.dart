@@ -68,14 +68,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> with AlertUtil {
               onPressed: () {
                 _sign();
               },
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all(RED_02),
+                overlayColor: WidgetStateProperty.all(RED_03),
+              ),
               child: const Text(
                 '로그인',
                 style: TextStyle(
                     color: Colors.white, fontFamily: DMFont.cafe24_surround, fontSize: 18),
-              ),
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(RED_02),
-                overlayColor: WidgetStateProperty.all(RED_03),
               ),
             ),
             const SizedBox(

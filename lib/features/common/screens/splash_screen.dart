@@ -4,7 +4,6 @@ import 'package:damoim/core/utils/alert_util.dart';
 import 'package:damoim/data/model/request/version_params.dart';
 import 'package:damoim/features/common/provider/splash_provider.dart';
 import 'package:damoim/features/common/provider/state/spalsh_ui_state.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -93,6 +92,5 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with AlertUtil {
         ),
       ),
     );
-    ;
   }
 }

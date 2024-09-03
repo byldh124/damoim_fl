@@ -1,4 +1,3 @@
-import 'package:damoim/config/const/data.dart';
 import 'package:damoim/domain/model/group_item_model.dart';
 import 'package:damoim/domain/repository/group_repository.dart';
 import 'package:damoim/features/home/provider/state/group_list_ui_notifier.dart';

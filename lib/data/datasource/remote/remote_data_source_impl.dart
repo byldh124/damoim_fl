@@ -8,7 +8,6 @@ import 'package:damoim/core/utils/string_util.dart';
 import 'package:damoim/data/datasource/remote/remote_data_source.dart';
 import 'package:damoim/data/model/dto/group_item_dto.dart';
 import 'package:damoim/data/model/dto/user_profile_dto.dart';
-import 'package:damoim/data/model/request/salt_request_params.dart';
 import 'package:damoim/data/model/request/sign_request_params.dart';
 import 'package:damoim/data/model/request/version_params.dart';
 import 'package:dio/dio.dart';

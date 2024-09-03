@@ -29,7 +29,7 @@ class CustomTextFormField extends StatelessWidget {
     // UnderlineInputBorder - 기본 적용
     final baseBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(
+        borderSide: const BorderSide(
       color: GRAY_06,
       width: 1.0,
     ));
@@ -46,9 +46,9 @@ class CustomTextFormField extends StatelessWidget {
         inputFormatters: digitText ? [FilteringTextInputFormatter.digitsOnly] : null,
         onChanged: onChanged,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 15),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 15),
           hintText: hintText,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             color: GRAY_06,
             fontSize: 14.0,
           ),
