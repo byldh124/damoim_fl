@@ -1,19 +1,17 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
+import 'package:damoim/config/const/data.dart';
 import 'package:damoim/core/model/base_response.dart';
 import 'package:damoim/core/model/simple_response.dart';
 import 'package:damoim/core/utils/string_util.dart';
 import 'package:damoim/data/datasource/remote/remote_data_source.dart';
+import 'package:damoim/data/model/dto/group_item_dto.dart';
 import 'package:damoim/data/model/dto/user_profile_dto.dart';
 import 'package:damoim/data/model/request/salt_request_params.dart';
 import 'package:damoim/data/model/request/sign_request_params.dart';
 import 'package:damoim/data/model/request/version_params.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:logger/logger.dart';
-import 'package:sprintf/sprintf.dart';
 
 class RemoteDataSourceImpl extends RemoteDataSource {
   final Dio dio;
@@ -46,5 +44,32 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
     return BaseResponse<UserProfileDto>.fromJson(
         signResult.data!, (json) => UserProfileDto.fromJson(json as Map<String, dynamic>));
+  }
+
+  @override
+  Future<BaseResponse<List<GroupItemDto>>> getGroupList(String id, GroupType type) async {
+    final Response response;
+    switch (type) {
+      case GroupType.ALL:
+        response = await dio.get('/group/group.php');
+      case GroupType.FAVORITE:
+        response = await dio.get('/group/favorite.php');
+      case GroupType.RECENT:
+        response = await dio.get('/group/recent.php');
+      case GroupType.MYGROUP:
+        response = await dio.get('/group/myGroup.php');
+    }
+
+    return BaseResponse.fromJson(
+      response.data!,
+      (json) {
+        final list = json as List<dynamic>;
+        final groupList = list.map((e) {
+          final map = e as Map<String, dynamic>;
+          return GroupItemDto.fromJson(map);
+        }).toList();
+        return List.empty();
+      },
+    );
   }
 }

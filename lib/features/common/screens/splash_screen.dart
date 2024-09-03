@@ -1,5 +1,6 @@
 import 'package:damoim/config/style/color.dart';
 import 'package:damoim/config/style/font.dart';
+import 'package:damoim/core/utils/alert_util.dart';
 import 'package:damoim/data/model/request/version_params.dart';
 import 'package:damoim/features/common/provider/splash_provider.dart';
 import 'package:damoim/features/common/provider/state/spalsh_ui_state.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+/// 로그인 화면
+/// 앱 버전 확인 - 유저 데이터 확인
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
@@ -15,13 +18,14 @@ class SplashScreen extends ConsumerStatefulWidget {
   ConsumerState<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends ConsumerState<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen> with AlertUtil {
   @override
   void initState() {
     super.initState();
     _checkAppVersion();
   }
 
+  /// 기존에는 listenManual을 사용했지만 현재는 FutureProvider를 사용
   void _checkAppVersionLegacy() {
     const versionParams = VersionParams(
       versionCode: 30,
@@ -29,21 +33,22 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       packageName: 'com.moondroid.project01_meetingapp',
     );
 
-    ref.listenManual(splashProvider, (pre, next) async {
-      switch(next) {
+    ref.listenManual(splashProvider, (pre, next) {
+      switch (next) {
         case SplashUiState.loading:
         case SplashUiState.home:
-          _toHome();
+          context.go('/home');
         case SplashUiState.sign:
-          _checkUserId();
+          context.go('/login');
         case SplashUiState.update:
-          _showAlert();
+          alert(context: context, message: "업데이트가 필요합니다.");
       }
     });
     ref.read(splashProvider.notifier).checkAppVersion(versionParams);
   }
 
   void _checkAppVersion() async {
+    //TODO VERSION CHECK PARAMS
     const versionParams = VersionParams(
       versionCode: 30,
       versionName: '2.1.1',
@@ -52,40 +57,20 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
     Future.delayed(const Duration(seconds: 1), () async {
       final response = await ref.read(checkAppVersionProvider(versionParams).future);
-      debugPrint('response :$response');
-
-      if (response.code == 1000) {
-        _checkUserId();
+      if (!mounted) return;
+      switch (response.code) {
+        case 1000:
+          //TODO CHECK USER AUTO LOGIN
+          //context.go('/login');
+          context.go('/home');
+        case 2001:
+          alert(context: context, message: "업데이트가 필요합니다.");
+        case 2004:
+          alert(context: context, message: "앱 버전이 존재하지 않습니다.");
+        default:
+          alert(context: context, message: response.message);
       }
     });
-  }
-
-  void _checkUserId() {
-    context.go('/login');
-  }
-
-  void _toHome() {
-    context.go('/home');
-  }
-
-  void _showAlert() {
-    showCupertinoDialog(
-      context: context,
-      builder: (context) {
-        return CupertinoAlertDialog(
-          content: const Text('앱 버전이 존재하지 않음'),
-          actions: [
-            CupertinoDialogAction(
-              isDefaultAction: true,
-              child: const Text('확인'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            )
-          ],
-        );
-      },
-    );
   }
 
   @override

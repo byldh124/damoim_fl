@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-mixin AlertUtil <T extends StatefulWidget> on State<T> {
+mixin AlertUtil {
   void alert(
       {required BuildContext context, String? title, String? message}) {
     showCupertinoDialog(

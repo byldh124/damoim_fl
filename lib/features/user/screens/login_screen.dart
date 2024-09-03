@@ -15,7 +15,7 @@ class LoginScreen extends ConsumerStatefulWidget {
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> with AlertUtil<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> with AlertUtil {
   String id = "";
   String pw = "";
 
@@ -112,18 +112,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> with AlertUtil<LoginS
 
   void _sign() async {
     final response = await ref.read(loginProvider((id: id, pw: pw)).future);
+    if (!mounted) return;
     if (response.success()) {
-      _toHome();
+      context.go('/home');
     } else {
-      _showAlert(response.message);
+      alert(context: context, title: '로그인 실패', message: response.message);
     }
-  }
-
-  void _showAlert(String message) {
-    alert(context: context, title: '로그인 실패', message: message);
-  }
-
-  void _toHome() {
-    context.go('/home');
   }
 }
