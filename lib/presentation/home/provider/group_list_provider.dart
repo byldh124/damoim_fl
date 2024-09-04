@@ -1,7 +1,7 @@
 import 'package:damoim/domain/model/group_item_model.dart';
 import 'package:damoim/domain/repository/group_repository.dart';
-import 'package:damoim/features/home/provider/state/group_list_ui_notifier.dart';
-import 'package:damoim/features/home/provider/state/group_list_ui_state.dart';
+import 'package:damoim/presentation/home/provider/state/group_list_ui_notifier.dart';
+import 'package:damoim/presentation/home/provider/state/group_list_ui_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final groupListProvider = StateNotifierProvider<GroupListUiNotifier, GroupListUiState>((ref) {

@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:damoim/config/const/data.dart';
-import 'package:damoim/core/model/base_response.dart';
-import 'package:damoim/core/model/simple_response.dart';
+import 'package:damoim/domain/model/response/base_response.dart';
 import 'package:damoim/core/utils/string_util.dart';
 import 'package:damoim/data/datasource/remote/remote_data_source.dart';
 import 'package:damoim/data/model/dto/group_item_dto.dart';
 import 'package:damoim/data/model/dto/user_profile_dto.dart';
-import 'package:damoim/data/model/request/sign_request_params.dart';
-import 'package:damoim/data/model/request/version_params.dart';
+import 'package:damoim/domain/model/request/sign_request_params.dart';
+import 'package:damoim/domain/model/request/version_params.dart';
 import 'package:dio/dio.dart';
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -18,15 +17,15 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   RemoteDataSourceImpl({required this.dio});
 
   @override
-  Future<SimpleResponse> checkAppVersion(VersionParams params) async {
+  Future<BaseResponse> checkAppVersion(VersionParams params) async {
     final response = await dio.get("/app/checkVersion.php", queryParameters: params.toJson());
-    return SimpleResponse.fromJson(response.data);
+    return BaseResponse.fromJson(response.data!, (j) {});
   }
 
   @override
   Future<BaseResponse<UserProfileDto>> sign(String id, String pw) async {
-    final saltResult = await dio.post('/sign/salt.php', data: {'id' : id});
-    final saltResponse = SimpleResponse.fromJson(saltResult.data!);
+    final saltResult = await dio.post('/sign/salt.php', data: {'id': id});
+    final saltResponse = BaseResponse<String>.fromJson(saltResult.data!, (json) => json.toString());
 
     final salt = saltResponse.result ?? "";
     var output = StringUtil.toHexString(utf8.encode(pw));
@@ -42,7 +41,9 @@ class RemoteDataSourceImpl extends RemoteDataSource {
         await dio.post('/sign/signIn.php', data: SignRequestParams(id, hashPw).toJson());
 
     return BaseResponse<UserProfileDto>.fromJson(
-        signResult.data!, (json) => UserProfileDto.fromJson(json as Map<String, dynamic>));
+      signResult.data!,
+      (json) => UserProfileDto.fromJson(json as Map<String, dynamic>),
+    );
   }
 
   @override

@@ -46,6 +46,7 @@ dependencies:
   crypto: ^3.0.5
   intl: ^0.19.0
   sprintf: ^7.0.0
+  floor: ^1.5.0
 
 dev_dependencies:
   flutter_test:
@@ -60,6 +61,7 @@ dev_dependencies:
   json_serializable: ^6.8.0
   retrofit_generator: ^8.1.2
   build_runner: ^2.4.11
+  floor_generator: ^1.5.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

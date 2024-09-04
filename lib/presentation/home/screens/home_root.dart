@@ -1,9 +1,9 @@
 import 'package:damoim/config/component/default_layout.dart';
 import 'package:damoim/config/style/color.dart';
-import 'package:damoim/features/home/screens/home_list_screen.dart';
-import 'package:damoim/features/home/screens/home_map_screen.dart';
-import 'package:damoim/features/home/screens/home_my_group_screen.dart';
-import 'package:damoim/features/home/screens/home_search_screen.dart';
+import 'package:damoim/presentation/home/screens/home_list_screen.dart';
+import 'package:damoim/presentation/home/screens/home_map_screen.dart';
+import 'package:damoim/presentation/home/screens/home_my_group_screen.dart';
+import 'package:damoim/presentation/home/screens/home_search_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeRoot extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:damoim/core/model/base_response.dart';
+import 'package:damoim/domain/model/response/base_response.dart';
 import 'package:damoim/domain/model/user_profile_model.dart';
 import 'package:damoim/domain/repository/user_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

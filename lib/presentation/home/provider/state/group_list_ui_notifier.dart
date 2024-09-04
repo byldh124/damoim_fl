@@ -1,6 +1,6 @@
 import 'package:damoim/config/const/data.dart';
 import 'package:damoim/domain/repository/group_repository.dart';
-import 'package:damoim/features/home/provider/state/group_list_ui_state.dart';
+import 'package:damoim/presentation/home/provider/state/group_list_ui_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class GroupListUiNotifier extends StateNotifier<GroupListUiState> {

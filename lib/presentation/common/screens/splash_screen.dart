@@ -1,9 +1,9 @@
 import 'package:damoim/config/style/color.dart';
 import 'package:damoim/config/style/font.dart';
 import 'package:damoim/core/utils/alert_util.dart';
-import 'package:damoim/data/model/request/version_params.dart';
-import 'package:damoim/features/common/provider/splash_provider.dart';
-import 'package:damoim/features/common/provider/state/spalsh_ui_state.dart';
+import 'package:damoim/domain/model/request/version_params.dart';
+import 'package:damoim/presentation/common/provider/splash_provider.dart';
+import 'package:damoim/presentation/common/provider/state/spalsh_ui_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -26,12 +26,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with AlertUtil {
 
   /// 기존에는 listenManual을 사용했지만 현재는 FutureProvider를 사용
   void _checkAppVersionLegacy() {
-    const versionParams = VersionParams(
-      versionCode: 30,
-      versionName: '2.1.1',
-      packageName: 'com.moondroid.project01_meetingapp',
-    );
-
     ref.listenManual(splashProvider, (pre, next) {
       switch (next) {
         case SplashUiState.loading:
@@ -43,6 +37,12 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with AlertUtil {
           alert(context: context, message: "업데이트가 필요합니다.");
       }
     });
+
+    const versionParams = VersionParams(
+      versionCode: 30,
+      versionName: '2.1.1',
+      packageName: 'com.moondroid.project01_meetingapp',
+    );
     ref.read(splashProvider.notifier).checkAppVersion(versionParams);
   }
 
@@ -60,8 +60,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> with AlertUtil {
       switch (response.code) {
         case 1000:
           //TODO CHECK USER AUTO LOGIN
-          //context.go('/login');
-          context.go('/home');
+          context.go('/login');
+          //context.go('/home');
         case 2001:
           alert(context: context, message: "업데이트가 필요합니다.");
         case 2004:

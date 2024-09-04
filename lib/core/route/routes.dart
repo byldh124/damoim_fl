@@ -1,7 +1,7 @@
-import 'package:damoim/features/common/screens/splash_screen.dart';
-import 'package:damoim/features/home/screens/home_root.dart';
-import 'package:damoim/features/user/screens/login_screen.dart';
-import 'package:damoim/features/user/screens/signup_screen.dart';
+import 'package:damoim/presentation/common/screens/splash_screen.dart';
+import 'package:damoim/presentation/home/screens/home_root.dart';
+import 'package:damoim/presentation/user/screens/login_screen.dart';
+import 'package:damoim/presentation/user/screens/signup_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final route = GoRouter(

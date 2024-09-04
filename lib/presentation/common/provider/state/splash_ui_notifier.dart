@@ -1,6 +1,6 @@
-import 'package:damoim/data/model/request/version_params.dart';
+import 'package:damoim/domain/model/request/version_params.dart';
 import 'package:damoim/domain/repository/app_repository.dart';
-import 'package:damoim/features/common/provider/state/spalsh_ui_state.dart';
+import 'package:damoim/presentation/common/provider/state/spalsh_ui_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SplashUiNotifier extends StateNotifier<SplashUiState> {

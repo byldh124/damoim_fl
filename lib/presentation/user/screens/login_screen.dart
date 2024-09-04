@@ -3,7 +3,7 @@ import 'package:damoim/config/component/default_layout.dart';
 import 'package:damoim/config/style/color.dart';
 import 'package:damoim/config/style/font.dart';
 import 'package:damoim/core/utils/alert_util.dart';
-import 'package:damoim/features/user/provider/login_provider.dart';
+import 'package:damoim/presentation/user/provider/login_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
