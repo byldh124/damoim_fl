@@ -2,6 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response.g.dart';
 
+
+//TODO 데이터 결과 처리 과정 변경 후 Data layer로 이동
 @JsonSerializable(genericArgumentFactories: true, includeIfNull: true)
 class BaseResponse<T> {
   @JsonKey(name: 'code')

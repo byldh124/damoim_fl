@@ -1,4 +1,4 @@
-import 'package:damoim/core/domain/model/user_profile_model.dart';
+import 'package:damoim/core/domain/model/entity/user_profile_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_profile_dto.g.dart';

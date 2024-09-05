@@ -1,4 +1,4 @@
-import 'package:damoim/core/domain/model/group_item_model.dart';
+import 'package:damoim/core/domain/model/entity/group_item_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'group_item_dto.g.dart';

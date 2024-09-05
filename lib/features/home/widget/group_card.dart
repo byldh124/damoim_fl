@@ -1,5 +1,5 @@
 import 'package:damoim/application/config/style/color.dart';
-import 'package:damoim/core/domain/model/group_item_model.dart';
+import 'package:damoim/core/domain/model/entity/group_item_model.dart';
 import 'package:flutter/material.dart';
 
 class GroupCard extends StatelessWidget {
