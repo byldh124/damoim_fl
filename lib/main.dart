@@ -4,17 +4,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/di/injector.dart';
 
-void main() => runMain();
+void main() {
+  setUpInjection();
+  runApp(const ProviderScope(child: MyApp()));
+}
 
-
-Future<void> runMain() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await initSingletons();
+void setUpInjection() {
+  initSingletons();
   provideDataSources();
   provideRepositories();
   provideUseCases();
-
-  runApp(const ProviderScope(child: MyApp()));
 }
 
 

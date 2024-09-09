@@ -1,24 +1,9 @@
 import 'dart:convert';
-import 'package:damoim/core/const/data.dart';
-import 'package:damoim/core/data/datasource/local/secure_storage/secure_storage.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
-final dioProvider = Provider<Dio>((ref) {
-  final storage = ref.watch(secureStorageProvider);
-
-  final dio = Dio();
-  dio.options = BaseOptions(baseUrl: BASE_URL);
-  dio.interceptors.add(
-    CustomInterceptor(),
-  );
-  return dio;
-});
 
 class CustomInterceptor extends Interceptor {
-
   CustomInterceptor();
 
   // 1) 요청을 보낼 때

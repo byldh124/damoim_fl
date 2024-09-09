@@ -1,7 +1,7 @@
 import 'package:damoim/core/const/data.dart';
 import 'package:damoim/core/data/datasource/remote/remote_data_source.dart';
 import 'package:damoim/core/data/datasource/remote/remote_data_source_impl.dart';
-import 'package:damoim/core/data/network/dio/dio.dart';
+import 'package:damoim/core/data/network/custom_interceptor.dart';
 import 'package:damoim/core/data/repository/app_repository_impl.dart';
 import 'package:damoim/core/data/repository/group_repository_impl.dart';
 import 'package:damoim/core/data/repository/user_repository_impl.dart';
@@ -14,7 +14,7 @@ import 'package:get_it/get_it.dart';
 
 final injector = GetIt.instance;
 
-Future<void> initSingletons() async {
+void initSingletons() {
   injector.registerLazySingleton<Dio>(() {
     final dio = Dio();
     dio.options = BaseOptions(baseUrl: BASE_URL);
@@ -44,5 +44,6 @@ void provideRepositories() {
 }
 
 void provideUseCases() {
-  injector.registerFactory<AppVersionUseCase>(() => AppVersionUseCase(injector.get<AppRepository>()));
+  injector
+      .registerFactory<AppVersionUseCase>(() => AppVersionUseCase(injector.get<AppRepository>()));
 }
