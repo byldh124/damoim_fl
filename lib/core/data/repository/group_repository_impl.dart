@@ -3,7 +3,6 @@ import 'package:damoim/core/domain/model/response/base_response.dart';
 import 'package:damoim/core/data/datasource/remote/remote_data_source.dart';
 import 'package:damoim/core/domain/model/entity/group_item_model.dart';
 import 'package:damoim/core/domain/repository/group_repository.dart';
-
 class GroupRepositoryImpl extends GroupRepository {
   RemoteDataSource remoteDataSource;
 

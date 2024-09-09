@@ -5,11 +5,6 @@ import 'package:damoim/core/data/repository/group_repository_impl.dart';
 import 'package:damoim/core/domain/model/entity/group_item_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final groupRepositoryProvider = Provider<GroupRepository>((ref) {
-  final remoteDataSource = ref.watch(remoteDatasourceProvider);
-  return GroupRepositoryImpl(remoteDataSource: remoteDataSource);
-});
-
 abstract class GroupRepository {
   Future<BaseResponse<List<GroupItemModel>>> getGroupList(String id, GroupType type);
 }

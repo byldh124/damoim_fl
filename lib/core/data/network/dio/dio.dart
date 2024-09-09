@@ -12,15 +12,14 @@ final dioProvider = Provider<Dio>((ref) {
   final dio = Dio();
   dio.options = BaseOptions(baseUrl: BASE_URL);
   dio.interceptors.add(
-    CustomInterceptor(storage: storage),
+    CustomInterceptor(),
   );
   return dio;
 });
 
 class CustomInterceptor extends Interceptor {
-  final FlutterSecureStorage storage;
 
-  CustomInterceptor({required this.storage});
+  CustomInterceptor();
 
   // 1) 요청을 보낼 때
   @override

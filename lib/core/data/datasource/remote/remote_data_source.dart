@@ -7,11 +7,6 @@ import 'package:damoim/core/domain/model/request/version_params.dart';
 import 'package:damoim/core/domain/model/response/base_response.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final remoteDatasourceProvider = Provider<RemoteDataSource>((ref) {
-  final dio = ref.watch(dioProvider);
-  return RemoteDataSourceImpl(dio: dio);
-});
-
 abstract class RemoteDataSource {
   Future<BaseResponse> checkAppVersion(VersionParams params);
 
